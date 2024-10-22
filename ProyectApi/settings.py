@@ -33,6 +33,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://backproductsdjango.onrender.com/",
 ]
 
+ALLOWED_HOSTS = ['backproductsdjango.onrender.com']
 
 # Application definition
 
