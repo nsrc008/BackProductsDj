@@ -127,41 +127,72 @@ python-dotenv==1.0.1
 
 Estas dependencias están instaladas automáticamente al usar Docker y están listadas en el archivo requirements.txt.
 
-## Docker
-
-Este proyecto utiliza Docker para ejecutar los servicios necesarios. A continuación, se describe brevemente cómo está configurado el entorno Docker.
-
-- Levantar los contenedores:
+## Docker Compose
+## Estructura del Proyecto
+A continuación, se muestra la estructura de directorios del proyecto:
 
 ```
-docker-compose up
+/proyecto
+│
+├── FrontProductsRc/            # Repositorio del frontend
+│   ├── Dockerfile
+│   └── ... (otros archivos del frontend)
+│
+├── BackProductsDj/             # Repositorio del backend
+│   ├── Dockerfile
+│   └── ... (otros archivos del backend)
+│
+└── docker-compose.yml          # Archivo para orquestar los servicios
 ```
 
-- Detener los contenedores:
+## Instrucciones de Uso
+1. Clonar los Repositorios: Clona ambos repositorios (frontend y backend) en el mismo directorio donde se encuentra el archivo ```docker-compose.yml```.
+2. Construir y Ejecutar los Servicios:
+   * Abre una terminal y navega hasta el directorio que contiene ```docker-compose.yml```.
+   * Ejecuta el siguiente comando para construir y levantar los contenedores:
+     ```
+      docker-compose up --build
+     ```
+3. Acceso a la Aplicación:
+   * El frontend estará disponible en ```http://localhost:3000 ```
+   * El backend estará disponible en ```http://localhost:8000```
 
+## Descripción del Archivo docker-compose.yml
 ```
-docker-compose down
-```
+version: '3.8'
 
-- Reconstruir la imagen:
+services:
+  frontend:
+    build:
+      context: ./FrontProductsRc
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    depends_on:
+      - backend
 
-```
-docker-compose up --build
-```
+  backend:
+    build:
+      context: ./BackProductsDj
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    volumes:
+      - backend_data:/app 
+    environment:
+      - DJANGO_SETTINGS_MODULE=ProyectApi.settings
+      - PYTHONUNBUFFERED=1
 
-- Acceder al contenedor web:
+networks:
+  app-network:
+    driver: bridge
 
+volumes:
+  backend_data:
 ```
-docker-compose exec web bash
-```
-
-## Pruebas
-
-Para ejecutar las pruebas dentro del contenedor, usa el siguiente comando:
-
-```
-docker-compose exec web python manage.py test
-```
+Este archivo orquesta tanto el frontend como el backend, asegurando que ambos servicios estén disponibles y funcionando correctamente.
 
 ## Despliegue en Producción
 
