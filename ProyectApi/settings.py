@@ -1,23 +1,38 @@
 from pathlib import Path
-import os
-from dotenv import load_dotenv
+# import os
+# from dotenv import load_dotenv
+
+# Cargar variables de entorno desde el archivo .env
+# load_dotenv()
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.getenv('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv('DEBUG') == 'True'
+
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Cargar variables de entorno desde el archivo .env
-load_dotenv()
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-p#ocky&ake^$-^ft26$vj9ad_90j=n3kauf7fu4kd*vkfv#u)o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = False
 
 # Permitir todos los orígenes (para desarrollo)
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+# O especificar orígenes específicos (recomendado para producción)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://backproductsdj.onrender.com",
+]
+
+ALLOWED_HOSTS = ['backproductsdj.onrender.com']
 
 # Application definition
 
