@@ -23,15 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p#ocky&ake^$-^ft26$vj9ad_90j=n3kauf7fu4kd*vkfv#u)o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Permitir todos los orígenes (para desarrollo)
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 
 # O especificar orígenes específicos (recomendado para producción)
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
+    "https://backproductsdjango.onrender.com/",
 ]
 
 
