@@ -18,7 +18,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu entorno local usand
 Clona este repositorio en tu máquina local usando git:
 
 ``bash
-git clone https://github.com/usuario/nombre-del-proyecto.git
+git clone https://github.com/nsrc008/BackProductsDj.git
 cd nombre-del-proyecto
 ### 2. Crear y configurar el archivo .env
 Copia el archivo .env.example a .env para configurar las variables de entorno:
